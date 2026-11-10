@@ -727,14 +727,172 @@ ol {
   margin: 0;
 }
 
+
+/* Metric highlights */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.stat {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.1rem 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+.stat-value {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.55rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.stat-label {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+/* Photo gallery — lead card + grid that grows from 1 to 3–6 photos */
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .photo-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .photo-card--lead {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 960px) {
+  .photo-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.photo-card {
+  margin: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.photo-card picture,
+.photo-card img {
+  display: block;
+  width: 100%;
+}
+
+.photo-card img {
+  height: auto;
+  background: var(--line);
+}
+
+.photo-card:not(.photo-card--lead) img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+}
+
+.photo-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.95rem 1.15rem 1.15rem;
+}
+
+.photo-card-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.photo-card-caption {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.photo-card--lead .photo-card-caption {
+  font-size: 1.05rem;
+  max-width: 46rem;
+}
+
+/* Experience highlights */
+
+.job-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 0.95rem;
+}
+
+.job-stat {
+  margin: 0;
+  padding: 0.45rem 0.75rem;
+  background: var(--accent-soft);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+
+.job-stat strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.job-quote {
+  margin: 0 0 1.1rem;
+  padding: 0.85rem 1rem 0.85rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--paper);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--ink);
+}
+
+.job-quote p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
 /* Responsive */
 
 @media (max-width: 860px) {
   .hero-grid,
   .job,
   .cards,
-  .edu-grid {
+  .edu-grid,
+  .stat-grid {
     grid-template-columns: 1fr;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .skill-grid {
@@ -805,7 +963,8 @@ ol {
 }
 
 @media (max-width: 560px) {
-  .skill-grid {
+  .skill-grid,
+  .stat-grid {
     grid-template-columns: 1fr;
   }
 
@@ -867,7 +1026,10 @@ ol {
 
   .card,
   .skill-group,
-  .edu {
+  .edu,
+  .stat,
+  .photo-card,
+  .job-quote {
     box-shadow: none;
     break-inside: avoid;
   }
